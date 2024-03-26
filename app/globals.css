@@ -2,5 +2,11 @@
   body {
     max-width: 100vw;
     overflow-x: hidden;
-    background-color: #d1d1d1;
+    background-color: #dddddd;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title-text{
+    text-align: center;
   }
