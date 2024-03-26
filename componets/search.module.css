@@ -1,0 +1,29 @@
+.search-holder{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: space-between;
+
+    .title-input{
+        width: 10rem;
+
+
+    }
+
+    .year-input{
+        width: 10rem;
+
+    }
+
+    .year-input-error{
+        color: red;
+        font-size: 0.8rem;
+    }
+
+    .search-button{
+        width: 50px;
+        height: 25px;
+    }
+
+}
