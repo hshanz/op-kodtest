@@ -1,5 +1,14 @@
-export const getMovieDetails = (id: string) => {
-  return 0;
+export const getMovieDetails = async (id: string) => {
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${id}`
+    );
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch movie details");
+    }
+
+    return res.json();
+
 };
 
 export const getMovies = async (queryTerm: string, yearOfRelease: string) => {
