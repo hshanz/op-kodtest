@@ -28,7 +28,7 @@ export default function SearchBar() {
   };
 
   const handleSearch = () => {
-    router.replace(`${pathname}?searchQuery=${query}&year=${yearOfRelease}`)
+    router.replace(`${pathname}?query=${query}&year=${yearOfRelease}`)
   };
 
   return (
