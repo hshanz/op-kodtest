@@ -29,12 +29,21 @@
         padding: 0.5rem;
         width: fit-content;
         outline: none;
-    
+        margin-right: 1rem;
     }
 
     .search-button{
         background-color: #555555;
         color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+    }
+
+    .search-button :disabled{
+        background-color: #55555569;
+        color: rgb(177, 4, 4);
         border: none;
         border-radius: 5px;
         padding: 0.5rem 1rem;

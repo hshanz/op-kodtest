@@ -1,33 +1,37 @@
 'use client'
 import { useState } from "react";
 import styles from "./search.module.css";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function SearchBar() {
-  const [query, setQuery] = useState<string | null>(null);
-  const [yearOfRelease, setYearOfRelease] = useState<number | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState<string | null>(searchParams.get("query"));
+  const [yearOfRelease, setYearOfRelease] = useState<string | null>(searchParams.get("year"));
   const [isValidYear, setValidYear] = useState<boolean>(true);
-  const router = useRouter()
-  const pathname = usePathname()
 
   const handleYear = (year: number) => {
 
     if(isNaN(year)) {
-      setYearOfRelease(null);
       setValidYear(true);
+      setYearOfRelease(null);
       return
     }
 
     if (year < 1890 || year > 2024) {
       setValidYear(false);
+      setYearOfRelease(year.toString());
       return;
     }
 
     setValidYear(true);
-    setYearOfRelease(year);
+    setYearOfRelease(year.toString());
+
   };
 
   const handleSearch = () => {
+    if (!isValidYear) return;
     router.replace(`${pathname}?query=${query?.trim()}&year=${yearOfRelease}`)
   };
 
@@ -36,6 +40,7 @@ export default function SearchBar() {
       <input
         className={styles["title-input"]}
         type="text"
+        value={query || ""}
         placeholder="Enter movie title..."
         onChange={(e) => setQuery(e.target.value)}
       />
@@ -44,6 +49,7 @@ export default function SearchBar() {
         className={
           isValidYear ? styles["year-input"] : styles["year-input-error"]
         }
+        value={yearOfRelease || ""}
         type="number"
         placeholder="Enter year of release..."
         onChange={(e) => handleYear(e.target.valueAsNumber)}
