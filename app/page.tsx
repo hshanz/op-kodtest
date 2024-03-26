@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getMovies } from "./api/route";
+import { getMovies } from "./api/handlers";
 import styles from "./page.module.css";
 import SearchBar from "@/componets/SearchBar";
 

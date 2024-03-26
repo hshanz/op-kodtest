@@ -1,4 +1,4 @@
-import { getMovieDetails } from "@/app/api/route";
+import { getMovieDetails } from "@/app/api/handlers";
 import styles from "./page.module.css";
 import { metadata } from "@/app/layout";
 type Movie = {
