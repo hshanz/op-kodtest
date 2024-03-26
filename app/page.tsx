@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getMovies } from "./api/route";
 import styles from "./page.module.css";
+import SearchBar from "@/componets/SearchBar";
 
 type Movie = {
   Title: string;
@@ -35,21 +36,38 @@ export default async function Home({
   searchParams?: { [key: string]: string };
 }) {
 
-  if (!searchParams?.searchQuery) {
-    return <h1>Search for a movie!</h1>;
+  if (!searchParams?.query) {
+    return (
+      <>
+      <SearchBar />
+      <div className={styles['empty-state']}>
+        <h1>Search for a movie above!</h1>
+      </div>
+      </>
+    );
   }
 
-  const movies = await getMovies(searchParams.searchQuery, searchParams.year)
+  const movies = await getMovies(searchParams.query, searchParams.year)
   console.log(movies)
   if(!movies.Search) {
-    return <h1>No movies found</h1>
+    return (
+      <>
+        <SearchBar />
+        <div className={styles["empty-state"]}>
+        <h1>No movies found :( </h1>
+      </div>
+      </>
+    );
   }
 
   return (
+    <>
+    <SearchBar />
     <div className={styles['grid-container']}>
       {movies.Search.map((movie: Movie) => (
         <MovieCard key={movie.imdbID} {...movie} />
       ))}
     </div>
+    </>
   )
 }
