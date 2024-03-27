@@ -1,6 +1,6 @@
 import { getMovieDetails } from "../../api/handlers";
-import styles from "./page.module.css";
-import { metadata } from "../../layout";
+import styles from "./details.page.module.css";
+
 type Movie = {
     Title: string;
     Year: string;
@@ -19,7 +19,6 @@ type Movie = {
 export default async function Page({ params }: { params: { id: string } }) {
     
     const details = await getMovieDetails(params.id) as Movie;
-    metadata.title = details.Title + '(' + details.Year + ')';
 
     return (
 
@@ -34,7 +33,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                     {details.Poster !== "N/A" ? (
                         <img className={styles['movie-image']} src={details.Poster} alt={details.Title} />
                     ) : (
-                        <div className={styles["no-image"]}>No Image</div>
+                        <div className={styles["no-poster"]}>No Image</div>
                     )}
                 </div>
                 
