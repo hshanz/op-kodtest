@@ -1,12 +1,12 @@
-import { expect, test, beforeAll,afterAll,afterEach,vi } from 'vitest'
-import { render, screen} from '@testing-library/react';
-import Home from '../app/page';
-import Page from '../app/movie/[id]/page';
-import { setupServer } from 'msw/node';
-import {HttpResponse, http} from 'msw';
+import { expect, test, beforeAll, afterAll, afterEach, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import Home from "../app/page";
+import Page from "../app/movie/[id]/page";
+import { setupServer } from "msw/node";
+import { HttpResponse, http } from "msw";
 
-vi.mock('next/navigation', async () => {
-  const actual = await vi.importActual('next/navigation');
+vi.mock("next/navigation", async () => {
+  const actual = await vi.importActual("next/navigation");
   return {
     ...actual,
     useRouter: vi.fn(() => ({
@@ -20,16 +20,15 @@ vi.mock('next/navigation', async () => {
   };
 });
 
-vi.mock('next/font/google', async () => {
-  const actual = await vi.importActual('next/font/google');
+vi.mock("next/font/google", async () => {
+  const actual = await vi.importActual("next/font/google");
   return {
     ...actual,
     Inter: vi.fn(() => ({
-      className: 'inter',
+      className: "inter",
     })),
   };
-
-})
+});
 
 const handlers = [
   http.get("http://www.omdbapi.com/", (params) => {
@@ -76,27 +75,37 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+test("Home", async () => {
+  const home = await Home({ searchParams: { query: "movie", year: "2021" } });
+  render(home);
 
-
-test('Home', async () => {
-
-    const home = await Home({searchParams:{query:'movie',year:'2021'}});
-    render(home);
-
-    expect(screen.getByRole('heading', { level: 3, name: 'Movie 1' })).toBeDefined()
-    expect(screen.getByRole('heading', { level: 3, name: 'Movie 2' })).toBeDefined()
+  expect(
+    screen.getByRole("heading", { level: 3, name: "Movie 1" })
+  ).toBeDefined();
+  expect(
+    screen.getByRole("heading", { level: 3, name: "Movie 2" })
+  ).toBeDefined();
 });
 
-test('Detail page',async () => {
-     
-    const page = await Page({params:{id:'mov1'}});
-    render(page)
+test("Detail page", async () => {
+  const page = await Page({ params: { id: "mov1" } });
+  render(page);
 
-    expect(screen.getByRole('heading', { level: 1, name: 'Movie 1' })).toBeDefined()
-    expect(screen.getByRole('heading', { level: 3, name: 'Genre: Action' })).toBeDefined()
-    expect(screen.getByRole('heading', { level: 3, name: 'Director: John Doe' })).toBeDefined()
-    expect(screen.getByRole('heading', { level: 3, name: 'Actors: John Doe, Jane Doe' })).toBeDefined()
-    expect(screen.getByRole('heading', { level: 3, name: 'Plot' })).toBeDefined()
-    expect(screen.getByText('A car movie')).toBeDefined()
-
+  expect(
+    screen.getByRole("heading", { level: 1, name: "Movie 1" })
+  ).toBeDefined();
+  expect(
+    screen.getByRole("heading", { level: 3, name: "Genre: Action" })
+  ).toBeDefined();
+  expect(
+    screen.getByRole("heading", { level: 3, name: "Director: John Doe" })
+  ).toBeDefined();
+  expect(
+    screen.getByRole("heading", {
+      level: 3,
+      name: "Actors: John Doe, Jane Doe",
+    })
+  ).toBeDefined();
+  expect(screen.getByRole("heading", { level: 3, name: "Plot" })).toBeDefined();
+  expect(screen.getByText("A car movie")).toBeDefined();
 });

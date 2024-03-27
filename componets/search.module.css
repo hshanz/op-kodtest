@@ -1,68 +1,64 @@
-.search-holder{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
+.search-holder {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
 
-    .title-input{
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 0.5rem;
-        width: fit-content;
-        outline: none;
-        margin-right: 1rem;
+  .title-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: fit-content;
+    outline: none;
+    margin-right: 1rem;
+  }
+
+  .year-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: fit-content;
+    outline: none;
+    margin-right: 1rem;
+  }
+
+  .year-input-error {
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: fit-content;
+    outline: none;
+    margin-right: 1rem;
+  }
+
+  .search-button {
+    background-color: #555555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+
+  .search-button:hover {
+    background-color: #333333;
+  }
+
+  .search-button:disabled {
+    background-color: #55555569;
+  }
+
+  @media screen and (max-width: 520px) {
+    flex-direction: column;
+    align-items: center;
+    .title-input {
+      margin-bottom: 1rem;
     }
-
-    .year-input{
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 0.5rem;
-        width: fit-content;
-        outline: none;
-        margin-right: 1rem;
+    .year-input {
+      margin-bottom: 1rem;
     }
-
-    .year-input-error{
-        border: 1px solid #ff0000;
-        border-radius: 5px;
-        padding: 0.5rem;
-        width: fit-content;
-        outline: none;
-        margin-right: 1rem;
+    .year-input-error {
+      margin-bottom: 1rem;
     }
-
-    .search-button{
-        background-color: #555555;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-    }
-
-    .search-button:hover{
-        background-color: #333333;
-    }
-
-    .search-button:disabled{
-        background-color: #55555569;
-    }
-
-    @media screen and (max-width: 520px) {
-        flex-direction: column;
-        align-items: center;
-        .title-input{
-            margin-bottom: 1rem;
-        }
-        .year-input{
-            margin-bottom: 1rem;
-        }
-        .year-input-error{
-            margin-bottom: 1rem;
-        }
-        
-    }
-
-
-
+  }
 }
