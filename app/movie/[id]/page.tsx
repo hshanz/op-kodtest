@@ -1,6 +1,6 @@
-import { getMovieDetails } from "@/app/api/handlers";
+import { getMovieDetails } from "../../api/handlers";
 import styles from "./page.module.css";
-import { metadata } from "@/app/layout";
+import { metadata } from "../../layout";
 type Movie = {
     Title: string;
     Year: string;
@@ -20,7 +20,6 @@ export default async function Page({ params }: { params: { id: string } }) {
     
     const details = await getMovieDetails(params.id) as Movie;
     metadata.title = details.Title + '(' + details.Year + ')';
-    console.log(details);
 
     return (
 

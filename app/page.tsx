@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getMovies } from "./api/handlers";
 import styles from "./page.module.css";
-import SearchBar from "@/componets/SearchBar";
+import SearchBar from '../componets/SearchBar';
 
 type Movie = {
   Title: string;
@@ -47,8 +47,8 @@ export default async function Home({
     );
   }
 
-  const movies = await getMovies(searchParams.query, searchParams.year)
-  console.log(movies)
+  const movies = await getMovies(searchParams.query, searchParams.year);
+
   if(!movies.Search) {
     return (
       <>

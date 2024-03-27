@@ -23,8 +23,6 @@ export const getMovies = async (queryTerm: string, yearOfRelease: string) => {
         query = `&s=${queryTerm}&y=${yearOfRelease}`;
     }
 
-    console.log(query);
-
     const res = await fetch(
         `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&type=movie${query}`
     );
