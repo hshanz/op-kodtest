@@ -1,7 +1,6 @@
 .search-holder{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     width: 100%;
     justify-content: center;
 
@@ -41,13 +40,29 @@
         cursor: pointer;
     }
 
-    .search-button :disabled{
-        background-color: #55555569;
-        color: rgb(177, 4, 4);
-        border: none;
-        border-radius: 5px;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
+    .search-button:hover{
+        background-color: #333333;
     }
+
+    .search-button:disabled{
+        background-color: #55555569;
+    }
+
+    @media screen and (max-width: 520px) {
+        flex-direction: column;
+        align-items: center;
+        .title-input{
+            margin-bottom: 1rem;
+        }
+        .year-input{
+            margin-bottom: 1rem;
+        }
+        .year-input-error{
+            margin-bottom: 1rem;
+        }
+        
+    }
+
+
 
 }

@@ -31,7 +31,7 @@ export default function SearchBar() {
   };
 
   const handleSearch = () => {
-    if (!isValidYear) return;
+    if (!isValidYear || !query) return;
     router.replace(`${pathname}?query=${query?.trim()}&year=${yearOfRelease}`)
   };
 
@@ -54,7 +54,7 @@ export default function SearchBar() {
         placeholder="Enter year of release..."
         onChange={(e) => handleYear(e.target.valueAsNumber)}
       />
-      <button className={styles['search-button']} onClick={() => handleSearch()}>Search</button>
+      <button disabled={!isValidYear || !query} className={styles['search-button']} onClick={() => handleSearch()}>Search</button>
     </div>
   );
 }
